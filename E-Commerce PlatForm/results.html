@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spare Parts Results</title>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        .results { margin-top: 30px; }
+        .part-item {
+            border: 1px solid #e2c909;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: #fffbe7;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .part-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+        .filter {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .part-details { flex: 1; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">SpareHub</div>
+        <nav class="links">
+            <ul>
+                <a href="Homepage.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="Login.html" class="sign">Sign In</a>
+            </ul>
+        </nav>
+    </div>
+    <div class="main">
+        <h2>Search Results for Spare Parts</h2>
+        <div class="filter">
+            <form method="get" action="results.html">
+                <input type="text" name="part" placeholder="Search For Parts">
+                <select name="brand">
+                    <option value="">Select Brand</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Maruti">Maruti</option>
+                </select>
+                <select name="model">
+                    <option value="">Select Model</option>
+                    <option value="Model1">Model1</option>
+                    <option value="Model2">Model2</option>
+                </select>
+                <select name="year">
+                    <option value="">Select Year</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+        <div class="results" id="results"></div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 SpareHub. All rights reserved.</p>
+    </div>
+<script>
+    const parts = [
+        {
+            name: "Battery",
+            brand: "Volkswagen",
+            model: "Model2",
+            year: "2022",
+            oem: "VW44556",
+            img: "./images/battery.png",
+            reviews: [
+                { rating: "5", review: "Excellent battery, lasts long!" },
+                { rating: "4", review: "Good performance, fits perfectly." },
+                { rating: "3", review: "Average, but does the job." }
+            ]
+        },
+        {
+            name: "Spark Plug",
+            brand: "Volkswagen",
+            model: "Model1",
+            year: "2022",
+            oem: "VW55667",
+            img: "./images/sparkplug.png",
+            reviews: [
+                { rating: "5", review: "Very reliable spark plug!" },
+                { rating: "4", review: "Works well, easy to install." }
+            ]
+        },
+        {
+            name: "Headlight",
+            brand: "Honda",
+            model: "Model1",
+            year: "2023",
+            oem: "HN77889",
+            img: "./images/headlight.png",
+            reviews: [
+                { rating: "5", review: "Bright and clear light!" },
+                { rating: "4", review: "Good quality, recommended." }
+            ]
+        },
+        {
+            name: "Clutch Plate",
+            brand: "Volkswagen",
+            model: "Model2",
+            year: "2022",
+            oem: "VW44556",
+            img: "./images/clutchplate.png",
+            reviews: [
+                { rating: "4", review: "Smooth operation." },
+                { rating: "3", review: "Decent for the price." }
+            ]
+        },
+        {
+            name: "Brake Pad",
+            brand: "Volkswagen",
+            model: "Model1",
+            year: "2022",
+            oem: "VW99887",
+            img: "./images/brakepad.png",
+            reviews: [
+                { rating: "5", review: "Stops smoothly and quietly." },
+                { rating: "4", review: "Good value for money." },
+                { rating: "4", review: "Easy to install." }
+            ]
+        },
+        {
+            name: "Oil Filter",
+            brand: "Volkswagen",
+            model: "Model2",
+            year: "2023",
+            oem: "VW77665",
+            img: "./images/oilfilter.png",
+            reviews: [
+                { rating: "5", review: "Keeps engine clean, works great!" },
+                { rating: "4", review: "Durable and reliable." },
+                { rating: "3", review: "Satisfactory performance." }
+            ]
+        },
+        {
+            name: "Air Filter",
+            brand: "Maruti",
+            model: "Model1",
+            year: "2024",
+            oem: "MR11223",
+            img: "./images/airfilter.png",
+            reviews: [
+                { rating: "5", review: "Improved air flow!" },
+                { rating: "4", review: "Fits perfectly." }
+            ]
+        }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const part = params.get('part');
+    const brand = params.get('brand');
+    const model = params.get('model');
+    const year = params.get('year');
+
+
+    const filtered = parts.filter(p =>
+        (!part || p.name.toLowerCase() === part.toLowerCase()) &&
+        (!brand || p.brand === brand) &&
+        (!model || p.model === model) &&
+        (!year || p.year === year)
+    );
+
+    const resultsDiv = document.getElementById('results');
+    if (filtered.length === 0) {
+        resultsDiv.innerHTML = "<p>No matching spare part found.</p>";
+    } else {
+        filtered.forEach((p, idx) => {
+            resultsDiv.innerHTML += `
+                <div class="part-item" id="part-${idx}">
+                    <img src="${p.img}" alt="${p.name}" class="part-img">
+                    <div class="part-details">
+                        <strong>${p.name}</strong><br>
+                        Brand: ${p.brand}<br>
+                        Model: ${p.model}<br>
+                        Year: ${p.year}<br>
+                        OEM Number: ${p.oem}<br><br>
+                        <button onclick="toggleDetails(${idx})" id="view-btn-${idx}">View More</button>
+                        <div id="details-${idx}" style="display:none; margin-top:10px;">
+                            <div>
+                                <label for="rating-${idx}">Rate this part:</label>
+                                <select id="rating-${idx}">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <input type="text" id="review-${idx}" placeholder="Write a review">
+                                <button onclick="submitReview(${idx})">Submit</button>
+                            </div>
+                            <div id="reviews-${idx}" style="margin-top:10px;">
+                                <strong>Reviews:</strong>
+                                <ul>
+                                    ${p.reviews.map(r => `<li>${renderStars(r.rating)} - ${r.review}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+
+    window.toggleDetails = function(idx) {
+        const details = document.getElementById(`details-${idx}`);
+        const btn = document.getElementById(`view-btn-${idx}`);
+        if (details.style.display === "none") {
+            details.style.display = "block";
+            btn.textContent = "Hide Details";
+        } else {
+            details.style.display = "none";
+            btn.textContent = "View More";
+        }
+    };
+
+    function renderStars(rating) {
+        return "★".repeat(Number(rating)) + "☆".repeat(5 - Number(rating));
+    }
+
+
+    window.submitReview = function(idx) {
+        const rating = document.getElementById(`rating-${idx}`).value;
+        const review = document.getElementById(`review-${idx}`).value;
+        if (review.trim() === "") return;
+        filtered[idx].reviews.push({ rating, review });
+        const reviewsList = document.querySelector(`#reviews-${idx} ul`);
+        const li = document.createElement("li");
+        li.innerHTML = `${renderStars(rating)} - ${review}`;
+        reviewsList.appendChild(li);
+        document.getElementById(`review-${idx}`).value = "";
+    };
+</script>
+</body>
+</html>
