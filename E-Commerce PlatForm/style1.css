@@ -4,43 +4,93 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
-nav ul {
-    list-style: none;
-}
-.sign
-{
-  list-style: none;
-}
-nav ul {
+.navbar{
     display: flex;
-    justify-content: flex-end; 
-    gap: 20px;
-    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: rgb(13, 0, 0);
+}
+.brand
+{
+    font-size: 38px;
+    font-weight: bold;
+    color: #e2c909;
 }
 
-nav ul li {
-    font-family: Arial, sans-serif; 
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px; 
+.links {
+    display: flex;
+    gap: 25px;
 }
 
-nav ul li:hover {
-    color: #555; 
-    cursor: pointer;
+.links a {
+    text-decoration: none;
+    color: #e2c909;
+    font-size: 26px;
+    padding: 10px;
+    transition: color 0.3s;
 }
+
 .main {
   background-color: #ffffff94;
-  margin-bottom: 200px;
+  margin:auto;
   border-radius: 12px;
-  padding: 1%;
+  padding: 2%;
   width: 100%;
   max-width: 1500px;
   box-sizing: border-box;
   box-shadow: 0 8px 40px rgba(255, 0, 0, 0.597);
 }
+.image
+{
+  display: flex;
+  justify-content: center;
+  padding-top:70px;
+}
+.image img
+{
+    display: block;
+    width: 60%;
+    border-radius: 10px;  
+    border-color: rgb(222, 29, 29);
+}
+.container
+{
+  position: relative;
+  width: 400px;
+  height: 300px;
+}
+.topcontainer
+{
+  position: absolute;
+  left: 100%;
+  top:50%;
+}
+.topcontainer img
+{
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(45, 0, 0, 0.597);
+}
 
-.main input {
+.bottomcontainer
+{
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  width:400px;
+  height: 450px;
+  left:500px;
+  top: 300px;
+  padding: 10%;
+  font-size: 1.8rem;;
+  letter-spacing: 0.3px;
+  border-radius: 20px;
+}
+.bottomcontainer h2
+{
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+.main input
+ {
   width: 50%;
     padding: 12px;
     border: 2px solid #000000;
@@ -48,6 +98,7 @@ nav ul li:hover {
     box-sizing: border-box;
 }
 
-.main img {
+.main img 
+{
   float: right;
 }
