@@ -139,3 +139,41 @@ height: 300px;
     font-size: 18px;
     font-weight: bold;
 }
+
+.about-main {
+    background-image: url('./images/desktop-wallpaper-car-parts-gallery-auto-parts.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.about-content {
+    background-color: #000000b1;
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.about-content h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #b10000;
+    display: inline-block;
+    padding-bottom: 8px;
+    color: #b10000;
+}
+
+.about-content p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #fbfbfb;
+}
