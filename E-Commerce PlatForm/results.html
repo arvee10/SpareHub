@@ -1,257 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Spare Parts Results</title>
-    <link rel="stylesheet" href="style1.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <style>
-        .results { margin-top: 30px; }
-        .part-item {
-            border: 1px solid #e2c909;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            background: #fffbe7;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .part-img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            background: #fff;
-        }
-        .filter {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .part-details { flex: 1; }
-    </style>
-</head>
-<body>
-    <div class="navbar">
-        <div class="brand">SpareHub</div>
-        <nav class="links">
-            <ul>
-                <a href="Homepage.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="Login.html" class="sign">Sign In</a>
-            </ul>
-        </nav>
-    </div>
-    <div class="main">
-        <h2>Search Results for Spare Parts</h2>
-        <div class="filter">
-            <form method="get" action="results.html">
-                <input type="text" name="part" placeholder="Search For Parts">
-                <select name="brand">
-                    <option value="">Select Brand</option>
-                    <option value="Volkswagen">Volkswagen</option>
-                    <option value="Honda">Honda</option>
-                    <option value="Maruti">Maruti</option>
-                </select>
-                <select name="model">
-                    <option value="">Select Model</option>
-                    <option value="Model1">Model1</option>
-                    <option value="Model2">Model2</option>
-                </select>
-                <select name="year">
-                    <option value="">Select Year</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                </select>
-                <button type="submit">Filter</button>
-            </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Results - Auto Parts</title>
+    <link rel="stylesheet" href="result.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="results-container">
+      <!-- Header -->
+      <header class="results-header">
+        <div class="header-content">
+          <div class="brand">AutoParts</div>
+          <div class="search-info">
+            <span id="search-details">Search Results</span>
+          </div>
+          <div class="header-actions">
+            <button onclick="goBack()" class="back-btn">← Back to Search</button>
+            <button class="filter-btn">Filters</button>
+          </div>
         </div>
-        <div class="results" id="results"></div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="results-main">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar">
+          <h3>Refine Results</h3>
+          
+          <div class="filter-group">
+            <h4>Price Range</h4>
+            <div class="price-range">
+              <input type="range" id="priceRange" min="0" max="1000" value="500">
+              <div class="price-labels">
+                <span>$0</span>
+                <span id="priceValue">$500</span>
+                <span>$1000+</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <h4>Brand</h4>
+            <div class="checkbox-group">
+              <label><input type="checkbox" value="oem"> OEM Parts</label>
+              <label><input type="checkbox" value="aftermarket"> Aftermarket</label>
+              <label><input type="checkbox" value="genuine"> Genuine Parts</label>
+              <label><input type="checkbox" value="performance"> Performance</label>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <h4>Condition</h4>
+            <div class="radio-group">
+              <label><input type="radio" name="condition" value="new" checked> New</label>
+              <label><input type="radio" name="condition" value="used"> Used</label>
+              <label><input type="radio" name="condition" value="refurbished"> Refurbished</label>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <h4>Availability</h4>
+            <div class="checkbox-group">
+              <label><input type="checkbox" value="instock"> In Stock</label>
+              <label><input type="checkbox" value="shipping"> Fast Shipping</label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Results Grid -->
+        <section class="results-grid">
+          <div class="results-header-bar">
+            <div class="results-count">
+              <span id="resultsCount">24 results found</span>
+            </div>
+            <div class="sort-options">
+              <select id="sortBy">
+                <option value="relevance">Sort by Relevance</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+                <option value="newest">Newest First</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically loaded here -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <button class="page-btn" disabled>← Previous</button>
+            <div class="page-numbers">
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <span>...</span>
+              <button class="page-btn">12</button>
+            </div>
+            <button class="page-btn">Next →</button>
+          </div>
+        </section>
+      </main>
     </div>
-    <div class="footer">
-        <p>&copy; 2023 SpareHub. All rights reserved.</p>
-    </div>
-<script>
-    const parts = [
+
+    <script>
+      // Sample product data
+      const sampleProducts = [
         {
-            name: "Battery",
-            brand: "Volkswagen",
-            model: "Model2",
-            year: "2022",
-            oem: "VW44556",
-            img: "./images/battery.png",
-            reviews: [
-                { rating: "5", review: "Excellent battery, lasts long!" },
-                { rating: "4", review: "Good performance, fits perfectly." },
-                { rating: "3", review: "Average, but does the job." }
-            ]
+          id: 1,
+          name: "Brake Pads Set - Front",
+          brand: "Premium Auto",
+          price: 89.99,
+          originalPrice: 109.99,
+          rating: 4.5,
+          reviews: 127,
+          image: "https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=300",
+          inStock: true,
+          shipping: "Free Shipping"
         },
         {
-            name: "Spark Plug",
-            brand: "Volkswagen",
-            model: "Model1",
-            year: "2022",
-            oem: "VW55667",
-            img: "./images/sparkplug.png",
-            reviews: [
-                { rating: "5", review: "Very reliable spark plug!" },
-                { rating: "4", review: "Works well, easy to install." }
-            ]
+          id: 2,
+          name: "Engine Air Filter",
+          brand: "OEM Quality",
+          price: 24.99,
+          originalPrice: 34.99,
+          rating: 4.8,
+          reviews: 89,
+          image: "https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=300",
+          inStock: true,
+          shipping: "2-Day Shipping"
         },
         {
-            name: "Headlight",
-            brand: "Honda",
-            model: "Model1",
-            year: "2023",
-            oem: "HN77889",
-            img: "./images/headlight.png",
-            reviews: [
-                { rating: "5", review: "Bright and clear light!" },
-                { rating: "4", review: "Good quality, recommended." }
-            ]
+          id: 3,
+          name: "Shock Absorber - Rear",
+          brand: "Performance Plus",
+          price: 156.99,
+          originalPrice: 189.99,
+          rating: 4.3,
+          reviews: 45,
+          image: "https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=300",
+          inStock: false,
+          shipping: "Standard Shipping"
         },
         {
-            name: "Clutch Plate",
-            brand: "Volkswagen",
-            model: "Model2",
-            year: "2022",
-            oem: "VW44556",
-            img: "./images/clutchplate.png",
-            reviews: [
-                { rating: "4", review: "Smooth operation." },
-                { rating: "3", review: "Decent for the price." }
-            ]
+          id: 4,
+          name: "Headlight Assembly",
+          brand: "Bright Vision",
+          price: 234.99,
+          originalPrice: 279.99,
+          rating: 4.6,
+          reviews: 203,
+          image: "https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=300",
+          inStock: true,
+          shipping: "Free Shipping"
         },
         {
-            name: "Brake Pad",
-            brand: "Volkswagen",
-            model: "Model1",
-            year: "2022",
-            oem: "VW99887",
-            img: "./images/brakepad.png",
-            reviews: [
-                { rating: "5", review: "Stops smoothly and quietly." },
-                { rating: "4", review: "Good value for money." },
-                { rating: "4", review: "Easy to install." }
-            ]
+          id: 5,
+          name: "Transmission Filter Kit",
+          brand: "Auto Excellence",
+          price: 67.99,
+          originalPrice: 84.99,
+          rating: 4.4,
+          reviews: 156,
+          image: "https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=300",
+          inStock: true,
+          shipping: "Free Shipping"
         },
         {
-            name: "Oil Filter",
-            brand: "Volkswagen",
-            model: "Model2",
-            year: "2023",
-            oem: "VW77665",
-            img: "./images/oilfilter.png",
-            reviews: [
-                { rating: "5", review: "Keeps engine clean, works great!" },
-                { rating: "4", review: "Durable and reliable." },
-                { rating: "3", review: "Satisfactory performance." }
-            ]
-        },
-        {
-            name: "Air Filter",
-            brand: "Maruti",
-            model: "Model1",
-            year: "2024",
-            oem: "MR11223",
-            img: "./images/airfilter.png",
-            reviews: [
-                { rating: "5", review: "Improved air flow!" },
-                { rating: "4", review: "Fits perfectly." }
-            ]
+          id: 6,
+          name: "Spark Plug Set",
+          brand: "Ignition Pro",
+          price: 45.99,
+          originalPrice: 59.99,
+          rating: 4.7,
+          reviews: 312,
+          image: "https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=300",
+          inStock: true,
+          shipping: "2-Day Shipping"
         }
-    ];
+      ];
 
-    const params = new URLSearchParams(window.location.search);
-    const part = params.get('part');
-    const brand = params.get('brand');
-    const model = params.get('model');
-    const year = params.get('year');
+      function loadSearchResults() {
+        const searchParams = JSON.parse(localStorage.getItem('searchParams') || '{}');
+        
+        if (searchParams.make) {
+          document.getElementById('search-details').textContent = 
+            `${searchParams.year} ${searchParams.make} ${searchParams.model} - ${searchParams.category}`;
+        }
+        
+        renderProducts(sampleProducts);
+      }
 
-
-    const filtered = parts.filter(p =>
-        (!part || p.name.toLowerCase() === part.toLowerCase()) &&
-        (!brand || p.brand === brand) &&
-        (!model || p.model === model) &&
-        (!year || p.year === year)
-    );
-
-    const resultsDiv = document.getElementById('results');
-    if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<p>No matching spare part found.</p>";
-    } else {
-        filtered.forEach((p, idx) => {
-            resultsDiv.innerHTML += `
-                <div class="part-item" id="part-${idx}">
-                    <img src="${p.img}" alt="${p.name}" class="part-img">
-                    <div class="part-details">
-                        <strong>${p.name}</strong><br>
-                        Brand: ${p.brand}<br>
-                        Model: ${p.model}<br>
-                        Year: ${p.year}<br>
-                        OEM Number: ${p.oem}<br><br>
-                        <button onclick="toggleDetails(${idx})" id="view-btn-${idx}">View More</button>
-                        <div id="details-${idx}" style="display:none; margin-top:10px;">
-                            <div>
-                                <label for="rating-${idx}">No. of parts:</label>
-                                <select id="rating-${idx}">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <input type="text" id="review-${idx}" placeholder="Write a review">
-                                <button onclick="submitReview(${idx})">Submit</button>
-                            </div>
-                            <div id="reviews-${idx}" style="margin-top:10px;">
-                                <strong>Reviews:</strong>
-                                <ul>
-                                    ${p.reviews.map(r => `<li>${renderStars(r.rating)} - ${r.review}</li>`).join('')}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+      function renderProducts(products) {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = '';
+        
+        products.forEach((product, index) => {
+          const productCard = document.createElement('div');
+          productCard.className = 'product-card';
+          productCard.style.animationDelay = `${index * 0.1}s`;
+          
+          const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+          
+          productCard.innerHTML = `
+            <div class="product-image">
+              <img src="${product.image}" alt="${product.name}" loading="lazy">
+              ${discount > 0 ? `<div class="discount-badge">-${discount}%</div>` : ''}
+              ${!product.inStock ? '<div class="out-of-stock">Out of Stock</div>' : ''}
+            </div>
+            <div class="product-info">
+              <div class="product-brand">${product.brand}</div>
+              <h3 class="product-name">${product.name}</h3>
+              <div class="product-rating">
+                <div class="stars">
+                  ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
                 </div>
-            `;
+                <span class="rating-text">${product.rating} (${product.reviews} reviews)</span>
+              </div>
+              <div class="product-pricing">
+                <span class="current-price">$${product.price}</span>
+                ${product.originalPrice > product.price ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
+              </div>
+              <div class="product-shipping">${product.shipping}</div>
+              <button class="add-to-cart-btn" ${!product.inStock ? 'disabled' : ''} onclick="addToCart(${product.id})">
+                ${product.inStock ? 'Add to Cart' : 'Notify When Available'}
+              </button>
+            </div>
+          `;
+          
+          grid.appendChild(productCard);
         });
-    }
+        
+        document.getElementById('resultsCount').textContent = `${products.length} results found`;
+      }
 
-
-    window.toggleDetails = function(idx) {
-        const details = document.getElementById(`details-${idx}`);
-        const btn = document.getElementById(`view-btn-${idx}`);
-        if (details.style.display === "none") {
-            details.style.display = "block";
-            btn.textContent = "Hide Details";
-        } else {
-            details.style.display = "none";
-            btn.textContent = "View More";
+      function addToCart(productId) {
+        const product = sampleProducts.find(p => p.id === productId);
+        if (product) {
+          alert(`Added "${product.name}" to cart!`);
         }
-    };
+      }
 
-    function renderStars(rating) {
-        return "★".repeat(Number(rating)) + "☆".repeat(5 - Number(rating));
-    }
+      function goBack() {
+        window.location.href = 'index.html';
+      }
 
+      // Price range slider
+      document.getElementById('priceRange').addEventListener('input', function(e) {
+        document.getElementById('priceValue').textContent = `$${e.target.value}`;
+      });
 
-    window.submitReview = function(idx) {
-        const rating = document.getElementById(`rating-${idx}`).value;
-        const review = document.getElementById(`review-${idx}`).value;
-        if (review.trim() === "") return;
-        filtered[idx].reviews.push({ rating, review });
-        const reviewsList = document.querySelector(`#reviews-${idx} ul`);
-        const li = document.createElement("li");
-        li.innerHTML = `${renderStars(rating)} - ${review}`;
-        reviewsList.appendChild(li);
-        document.getElementById(`review-${idx}`).value = "";
-    };
-</script>
-</body>
+      // Sort functionality
+      document.getElementById('sortBy').addEventListener('change', function(e) {
+        let sortedProducts = [...sampleProducts];
+        
+        switch(e.target.value) {
+          case 'price-low':
+            sortedProducts.sort((a, b) => a.price - b.price);
+            break;
+          case 'price-high':
+            sortedProducts.sort((a, b) => b.price - a.price);
+            break;
+          case 'rating':
+            sortedProducts.sort((a, b) => b.rating - a.rating);
+            break;
+          default:
+            // Keep original order for relevance
+            break;
+        }
+        
+        renderProducts(sortedProducts);
+      });
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        loadSearchResults();
+        
+        // Animate cards on load
+        setTimeout(() => {
+          document.querySelectorAll('.product-card').forEach(card => {
+            card.classList.add('animate-in');
+          });
+        }, 100);
+      });
+    </script>
+  </body>
 </html>
