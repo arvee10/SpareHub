@@ -248,11 +248,6 @@
         window.location.href = 'index.html';
       }
 
-      // Price range slider
-      document.getElementById('priceRange').addEventListener('input', function(e) {
-        document.getElementById('priceValue').textContent = `$${e.target.value}`;
-      });
-
       // Sort functionality
       document.getElementById('sortBy').addEventListener('change', function(e) {
         let sortedProducts = [...sampleProducts];
