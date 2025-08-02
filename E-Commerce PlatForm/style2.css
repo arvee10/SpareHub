@@ -50,7 +50,7 @@ background-color: rgb(255, 255, 255);
 .login-page input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #9a0404;
+    accent-color: #ac0a0dfd;
     margin: 5px;
     cursor: pointer;
 }
@@ -91,7 +91,7 @@ background-color: rgb(255, 255, 255);
 }
 
 .login-page button:hover{
-    background:#870003fd;
+    background:#ac0a0dfd;
 }
 .image{
     flex: 1; 

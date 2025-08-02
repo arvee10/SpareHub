@@ -18,7 +18,7 @@
           </div>
           <div class="header-actions">
             <button onclick="goBack()" class="back-btn">← Back to Search</button>
-            <button class="filter-btn">Filters</button>
+            <button class="filter-btn" onclick="toggleFilters()">Filters</button>
           </div>
         </div>
       </header>
@@ -26,18 +26,16 @@
       <!-- Main Content -->
       <main class="results-main">
         <!-- Sidebar Filters -->
-        <aside class="filters-sidebar">
-          <h3>Refine Results</h3>
+        <aside class="filters-sidebar" id="filtersSidebar">
+          <h3>Filters</h3>
           
           <div class="filter-group">
             <h4>Price Range</h4>
-            <div class="price-range">
-              <input type="range" id="priceRange" min="0" max="1000" value="500">
-              <div class="price-labels">
-                <span>$0</span>
-                <span id="priceValue">$500</span>
-                <span>$1000+</span>
-              </div>
+            <div class="checkbox-group" id="priceRangeGroup">
+              <label><input type="checkbox" name="priceRange" value="0-500"> ₹0 - ₹500</label>
+              <label><input type="checkbox" name="priceRange" value="500-1000"> ₹500 - ₹1000</label>
+              <label><input type="checkbox" name="priceRange" value="1000-2000"> ₹1000 - ₹2000</label>
+              <label><input type="checkbox" name="priceRange" value="2000+"> ₹2000+</label>
             </div>
           </div>
           
@@ -113,7 +111,7 @@
           id: 1,
           name: "Brake Pads Set - Front",
           brand: "Premium Auto",
-          price: 89.99,
+          price: 1299.99,
           originalPrice: 109.99,
           rating: 4.5,
           reviews: 127,
@@ -125,7 +123,7 @@
           id: 2,
           name: "Engine Air Filter",
           brand: "OEM Quality",
-          price: 24.99,
+          price: 559.99,
           originalPrice: 34.99,
           rating: 4.8,
           reviews: 89,
@@ -137,7 +135,7 @@
           id: 3,
           name: "Shock Absorber - Rear",
           brand: "Performance Plus",
-          price: 156.99,
+          price: 326.99,
           originalPrice: 189.99,
           rating: 4.3,
           reviews: 45,
@@ -149,7 +147,7 @@
           id: 4,
           name: "Headlight Assembly",
           brand: "Bright Vision",
-          price: 234.99,
+          price: 3999.99,
           originalPrice: 279.99,
           rating: 4.6,
           reviews: 203,
@@ -161,7 +159,7 @@
           id: 5,
           name: "Transmission Filter Kit",
           brand: "Auto Excellence",
-          price: 67.99,
+          price: 679.99,
           originalPrice: 84.99,
           rating: 4.4,
           reviews: 156,
@@ -173,7 +171,7 @@
           id: 6,
           name: "Spark Plug Set",
           brand: "Ignition Pro",
-          price: 45.99,
+          price: 269.99,
           originalPrice: 59.99,
           rating: 4.7,
           reviews: 312,
@@ -221,8 +219,8 @@
                 <span class="rating-text">${product.rating} (${product.reviews} reviews)</span>
               </div>
               <div class="product-pricing">
-                <span class="current-price">$${product.price}</span>
-                ${product.originalPrice > product.price ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
+                <span class="current-price">₹${product.price}</span>
+                ${product.originalPrice > product.price ? `<span class="original-price">₹${product.originalPrice}</span>` : ''}
               </div>
               <div class="product-shipping">${product.shipping}</div>
               <button class="add-to-cart-btn" ${!product.inStock ? 'disabled' : ''} onclick="addToCart(${product.id})">
@@ -245,7 +243,7 @@
       }
 
       function goBack() {
-        window.location.href = 'index.html';
+        window.location.href = 'Homepage.html';
       }
 
       // Sort functionality
@@ -270,10 +268,103 @@
         renderProducts(sortedProducts);
       });
 
+      // Toggle filters sidebar
+      function toggleFilters() {
+        const sidebar = document.getElementById('filtersSidebar');
+        const main = document.querySelector('.results-main');
+        if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+          sidebar.style.display = 'block';
+          main.classList.remove('no-filters');
+        } else {
+          sidebar.style.display = 'none';
+          main.classList.add('no-filters');
+        }
+      }
+
+      // Helper: get selected filters
+      function getSelectedFilters() {
+        // Price Ranges
+        const priceChecks = document.querySelectorAll('#priceRangeGroup input[type="checkbox"]');
+        const priceRanges = Array.from(priceChecks)
+          .filter(cb => cb.checked)
+          .map(cb => cb.value);
+
+        // Brands
+        const brandChecks = document.querySelectorAll('.filter-group:nth-child(2) .checkbox-group input[type="checkbox"]');
+        const brands = Array.from(brandChecks)
+          .filter(cb => cb.checked)
+          .map(cb => cb.parentElement.textContent.trim());
+
+        // Condition
+        const condition = document.querySelector('.radio-group input[name="condition"]:checked')?.value;
+
+        // Availability
+        const availChecks = document.querySelectorAll('.filter-group:nth-child(4) .checkbox-group input[type="checkbox"]');
+        const availability = Array.from(availChecks)
+          .filter(cb => cb.checked)
+          .map(cb => cb.value);
+
+        return { priceRanges, brands, condition, availability };
+      }
+
+      // Filter logic
+      function filterProducts() {
+        const { priceRanges, brands, condition, availability } = getSelectedFilters();
+
+        let filtered = sampleProducts.filter(product => {
+          // Price Range (convert product.price to number for comparison)
+          if (priceRanges.length) {
+            let inRange = false;
+            const price = Number(product.price);
+            for (const range of priceRanges) {
+              if (range === "0-500" && price >= 0 && price <= 500) inRange = true;
+              if (range === "500-1000" && price > 500 && price <= 1000) inRange = true;
+              if (range === "1000-2000" && price > 1000 && price <= 2000) inRange = true;
+              if (range === "2000+" && price > 2000) inRange = true;
+            }
+            if (!inRange) return false;
+          }
+
+          // Brand
+          if (brands.length && product.brand && !brands.includes(product.brand)) return false;
+
+          // Condition (simulate: all products are 'new' unless otherwise)
+          if (condition && condition !== 'new') return false; // Expand if you have condition data
+
+          // Availability
+          if (availability.includes('instock') && !product.inStock) return false;
+          if (availability.includes('shipping') && (!product.shipping || !product.shipping.toLowerCase().includes('shipping'))) return false;
+
+          return true;
+        });
+
+        renderProducts(filtered);
+      }
+
+      // Attach filterProducts to all filter inputs for instant filtering
+      document.querySelectorAll('#priceRangeGroup input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', filterProducts);
+      });
+      document.querySelectorAll('.filter-group:nth-child(2) .checkbox-group input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', filterProducts);
+      });
+      document.querySelectorAll('.radio-group input[name="condition"]').forEach(rb => {
+        rb.addEventListener('change', filterProducts);
+      });
+      document.querySelectorAll('.filter-group:nth-child(4) .checkbox-group input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', filterProducts);
+      });
+
       // Initialize page
       document.addEventListener('DOMContentLoaded', function() {
         loadSearchResults();
-        
+
+        // Hide filters sidebar on small screens by default (optional)
+        if (window.innerWidth < 900) {
+          document.getElementById('filtersSidebar').classList.add('hide');
+          document.querySelector('.results-main').classList.add('no-filters');
+        }
+
         // Animate cards on load
         setTimeout(() => {
           document.querySelectorAll('.product-card').forEach(card => {
