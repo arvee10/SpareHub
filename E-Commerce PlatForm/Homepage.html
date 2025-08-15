@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpareHub - Home</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">SpareHub</div>
+        <nav class="links">
+            <ul>
+                <a href="./Homepage.html">Home</a>
+                <a href="./about.html">About</a>
+                <a href="./Login.html" class="sign">Sign In</a>  
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main">
+        <img src="./images/homepage.jpg" width="550" height="450" class="pic">
+        <form action="results.html" method="get" style="margin-top:20px;">
+            <input type="text" name="part" placeholder="Search For Parts" required>
+            <select name="brand">
+                <option value="">Select Brand</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Honda">Honda</option>
+                <option value="Maruti">Maruti</option>
+            </select>
+            <select name="model">
+                <option value="">Select Model</option>
+                <option value="Model1">Model1</option>
+                <option value="Model2">Model2</option>
+            </select>
+            <select name="year">
+                <option value="">Select Year</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <div class="description">
+            <h1><u>Spare Hub</u></h1>
+            <h3>
+                It is a website that is used to sell spare parts.<br>
+                Spare parts are available for many brands like Volkswagen, Honda, Maruti, etc.<br>
+                Each spare part will have an OEM number / Batch number.
+            </h3>
+        </div>
+    </div>
+</body>
+</html>
