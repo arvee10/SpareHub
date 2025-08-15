@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part Details - AutoParts</title>
+    <link rel="stylesheet" href="../styles/part.css">
+</head>
+<body>
+    <header>
+        <h1>AutoParts</h1>
+        <nav>
+            <a href="../pages/results.html">← Back to Search</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <h2>Part Name</h2>
+            <div class="part-image">
+                <img src="../images/airfilter.png" alt="Part Image">
+            </div>
+            <div class="part-details">
+                <p><strong>Price:</strong> ₹1500</p>
+                <p><strong>Brand:</strong> OEM Parts</p>
+                <p><strong>Condition:</strong> New</p>
+                <p><strong>Availability:</strong> In Stock</p>
+                <p><strong>Description:</strong> High-quality OEM part designed for optimal performance and durability. Compatible with multiple vehicle models.</p>
+            </div>
+
+            <div class="rating-section">
+                <h3>Customer Rating</h3>
+                <div class="star-rating">★★★★☆ (4.2/5 based on 56 reviews)</div>
+            </div>
+
+            <div class="review-section">
+                <h3>Customer Reviews</h3>
+                <div class="review">
+                    <p><strong>John D.</strong> ★★★★★</p>
+                    <p>Great part, works perfectly in my car. Fast shipping too!</p>
+                    <p><em>Posted on August 10, 2025</em></p>
+                </div>
+                <div class="review">
+                    <p><strong>Sarah M.</strong> ★★★★☆</p>
+                    <p>Good quality, but installation was a bit tricky.</p>
+                    <p><em>Posted on August 5, 2025</em></p>
+                </div>
+
+                <div class="review-form">
+                    <h3>Write a Review</h3>
+                    <form>
+                        <label for="rating">Rating:</label>
+                        <select id="rating" name="rating">
+                            <option value="5">★★★★★</option>
+                            <option value="4">★★★★☆</option>
+                            <option value="3">★★★☆☆</option>
+                            <option value="2">★★☆☆☆</option>
+                            <option value="1">★☆☆☆☆</option>
+                        </select>
+                        <br><br>
+                        <label for="review-text">Your Review:</label><br>
+                        <textarea id="review-text" name="review-text" placeholder="Write your review here..."></textarea>
+                        <br>
+                        <button type="submit">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h3>Related Parts</h3>
+            <p><a href="partdetails.html?partId=4">Clutchplate</a> - ₹2000</p>
+            <p><a href="partdetails.html?partId=1">Brake Pads</a> - ₹800</p>
+            <p><a href="partdetails.html?partId=2">Oil Filter</a> - ₹600</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 AutoParts. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Basic form submission handling (to be enhanced with backend integration)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Review submitted! (Note: This is a static demo. Backend integration required for actual submission.)');
+        });
+    </script>
+</body>
+</html>
