@@ -44,7 +44,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <tbody>
                     <tr>
                         <td>Brake Pad Set</td>
-                        <td>$45.99</td>
+                        <td>₹45.99</td>
                         <td>50</td>
                         <td>
                             <button class="action-btn edit-btn">Edit</button>
@@ -53,7 +53,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </tr>
                     <tr>
                         <td>Oil Filter</td>
-                        <td>$12.50</td>
+                        <td>₹12.50</td>
                         <td>100</td>
                         <td>
                             <button class="action-btn edit-btn">Edit</button>
@@ -62,7 +62,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </tr>
                     <tr>
                         <td>Air Filter</td>
-                        <td>$18.75</td>
+                        <td>₹18.75</td>
                         <td>75</td>
                         <td>
                             <button class="action-btn edit-btn">Edit</button>
