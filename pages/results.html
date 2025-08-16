@@ -7,48 +7,56 @@
     <link rel="stylesheet" href="../styles/result.css">
 </head>
 <body>
-    <header class="results-header">
+    <div class="results-header">
         <div class="header-content">
             <div class="brand">AutoParts</div>
             <div class="search-info">Search Results</div>
             <div class="header-actions">
-                <button class="back-btn">← Back to Search</button>
+                <button class="back-btn" onclick="window.location.href='../pages/Homepage.html'">← Back to Search</button>
                 <button class="filter-btn">Filters</button>
             </div>
         </div>
-    </header>
+    </div>
 
     <div class="results-main">
         <div class="filters-sidebar">
             <h3>Filters</h3>
             <div class="filter-group">
                 <h4>Price Range</h4>
-                <label class="checkbox-group"><input type="checkbox"> ₹500 - ₹1000</label>
-                <label class="checkbox-group"><input type="checkbox"> ₹1000 - ₹2000</label>
-                <label class="checkbox-group"><input type="checkbox"> ₹2000+</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="500-1000"> ₹500 - ₹1000</label>
+                    <label><input type="checkbox" value="1000-2000"> ₹1000 - ₹2000</label>
+                    <label><input type="checkbox" value="2000+"> ₹2000+</label>
+                </div>
             </div>
             <div class="filter-group">
                 <h4>Brand</h4>
-                <label class="checkbox-group"><input type="checkbox"> OEM Parts</label>
-                <label class="checkbox-group"><input type="checkbox"> Aftermarket</label>
-                <label class="checkbox-group"><input type="checkbox"> Performance</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="oem parts"> OEM Parts</label>
+                    <label><input type="checkbox" value="aftermarket"> Aftermarket</label>
+                    <label><input type="checkbox" value="performance"> Performance</label>
+                </div>
             </div>
             <div class="filter-group">
                 <h4>Condition</h4>
-                <label class="checkbox-group"><input type="checkbox"> New</label>
-                <label class="checkbox-group"><input type="checkbox"> Used</label>
-                <label class="checkbox-group"><input type="checkbox"> Refurbished</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="new"> New</label>
+                    <label><input type="checkbox" value="used"> Used</label>
+                    <label><input type="checkbox" value="refurbished"> Refurbished</label>
+                </div>
             </div>
             <div class="filter-group">
                 <h4>Availability</h4>
-                <label class="checkbox-group"><input type="checkbox"> In Stock</label>
-                <label class="checkbox-group"><input type="checkbox"> Fast Shipping</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="in stock"> In Stock</label>
+                    <label><input type="checkbox" value="fast shipping"> Fast Shipping</label>
+                </div>
             </div>
         </div>
 
         <div class="results-grid">
             <div class="results-header-bar">
-                <div class="results-count">24 results found</div>
+                <div class="results-count">6 results found</div>
                 <div class="sort-options">
                     <label for="sort">Sort by</label>
                     <select id="sort">
@@ -62,7 +70,7 @@
             </div>
 
             <div class="products-grid">
-                <div class="product-card" onclick="window.location.href='partdetails.html?partId=1'">
+                <div class="product-card" onclick="window.location.href='../pages/partdetails.html?partId=1'">
                     <div class="product-image">
                         <img src="../images/brakepad.png" alt="Brake Pads">
                     </div>
@@ -76,21 +84,21 @@
                         <div class="product-shipping">In Stock</div>
                     </div>
                 </div>
-                <div class="product-card" onclick="window.location.href='partdetails.html?partId=2'">
+                <div class="product-card" onclick="window.location.href='../pages/partdetails.html?partId=2'">
                     <div class="product-image">
-                        <img src="../images/oilfilter.png" alt="Oil Filter">
+                        <img src="../images/airfilter.png" alt="AirFilter">
                     </div>
                     <div class="product-info">
-                        <div class="product-name">Oil Filter</div>
+                        <div class="product-name">AirFilter</div>
                         <div class="product-pricing">
-                            <span class="current-price">₹600</span>
+                            <span class="current-price">₹500</span>
                         </div>
-                        <div class="product-brand">Aftermarket</div>
-                        <div>Condition: New</div>
-                        <div class="product-shipping">Fast Shipping</div>
+                        <div class="product-brand">Performance</div>
+                        <div>Condition: Refurbished</div>
+                        <div class="product-shipping">In Stock</div>
                     </div>
                 </div>
-                <div class="product-card" onclick="window.location.href='partdetails.html?partId=3'">
+                <div class="product-card" onclick="window.location.href='../pages/partdetails.html?partId=3'">
                     <div class="product-image">
                         <img src="../images/clutchplate.png" alt="Clutchplate">
                     </div>
@@ -118,20 +126,7 @@
                         <div class="product-shipping">In Stock</div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="../images/airfilter.png" alt="Air Filter">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Air Filter</div>
-                        <div class="product-pricing">
-                            <span class="current-price">₹500</span>
-                        </div>
-                        <div class="product-brand">Aftermarket</div>
-                        <div>Condition: New</div>
-                        <div class="product-shipping">Fast Shipping</div>
-                    </div>
-                </div>
+                
                 <div class="product-card">
                     <div class="product-image">
                         <img src="../images/headlight.png" alt="Headlight">
@@ -161,5 +156,71 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Toggle filters sidebar visibility
+        const filterBtn = document.querySelector('.filter-btn');
+        const filtersSidebar = document.querySelector('.filters-sidebar');
+        const resultsMain = document.querySelector('.results-main');
+        filterBtn.addEventListener('click', () => {
+            filtersSidebar.classList.toggle('hidden');
+            resultsMain.classList.toggle('no-filters');
+            filterBtn.textContent = filtersSidebar.classList.contains('hidden') ? 'Show Filters' : 'Hide Filters';
+        });
+
+        // Filter functionality
+        const checkboxes = document.querySelectorAll('.filters-sidebar input[type="checkbox"]');
+        const resultsCount = document.querySelector('.results-count');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', filterProducts);
+        });
+
+        function filterProducts() {
+            const products = document.querySelectorAll('.product-card');
+            const checkedPrices = Array.from(document.querySelectorAll('.filter-group:nth-child(1) input:checked')).map(ch => ch.value);
+            const checkedBrands = Array.from(document.querySelectorAll('.filter-group:nth-child(2) input:checked')).map(ch => ch.value.toLowerCase());
+            const checkedConditions = Array.from(document.querySelectorAll('.filter-group:nth-child(3) input:checked')).map(ch => ch.value.toLowerCase());
+            const checkedAvailabilities = Array.from(document.querySelectorAll('.filter-group:nth-child(4) input:checked')).map(ch => ch.value.toLowerCase());
+
+            let visibleCount = 0;
+
+            products.forEach(product => {
+                let show = true;
+
+                const priceStr = product.querySelector('.current-price').textContent.replace('₹', '');
+                const price = parseInt(priceStr, 10);
+                const brand = product.querySelector('.product-brand').textContent.toLowerCase();
+                const conditionStr = product.querySelector('.product-info div:nth-child(4)').textContent;
+                const condition = conditionStr.replace('Condition: ', '').toLowerCase();
+                const availability = product.querySelector('.product-shipping').textContent.toLowerCase();
+
+                // Price filter
+                if (checkedPrices.length > 0) {
+                    let matchesPrice = false;
+                    checkedPrices.forEach(range => {
+                        if (range === '500-1000' && price >= 500 && price <= 1000) matchesPrice = true;
+                        else if (range === '1000-2000' && price >= 1000 && price <= 2000) matchesPrice = true;
+                        else if (range === '2000+' && price > 2000) matchesPrice = true;
+                    });
+                    if (!matchesPrice) show = false;
+                }
+
+                // Brand filter
+                if (checkedBrands.length > 0 && !checkedBrands.includes(brand)) show = false;
+
+                // Condition filter
+                if (checkedConditions.length > 0 && !checkedConditions.includes(condition)) show = false;
+
+                // Availability filter
+                if (checkedAvailabilities.length > 0 && !checkedAvailabilities.includes(availability)) show = false;
+
+                product.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+            });
+
+            // Update results count
+            resultsCount.textContent = `${visibleCount} results found`;
+        }
+    </script>
 </body>
 </html>

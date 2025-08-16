@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: admin.php");
         exit;
     } else {
-        // Redirect back to login with error
+        // Redirect  back to login with error
         header("Location: Login.html?error=Invalid credentials");
         exit;
     }

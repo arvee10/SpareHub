@@ -21,9 +21,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <div class="brand">SpareHub</div>
         <div class="links">
             <ul>
-                <li><a href="./Homepage.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="logout.php" class="sign">Sign Out</a></li>
+                <li><a href="../pages/Homepage.html">Home</a></li>
+                <li><a href="../pages/about.html">About</a></li>
+                <li><a href="../pages/logout.php" class="sign">Sign Out</a></li>
             </ul>
         </div>
     </div>
