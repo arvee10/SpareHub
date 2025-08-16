@@ -287,6 +287,12 @@ footer {
 @media (max-width: 480px) {
     header h1 {
         font-size: 24px;
+            font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff4d4d, #ff7878, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     }
 
     .main-content h2 {
