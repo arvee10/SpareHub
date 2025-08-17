@@ -9,6 +9,8 @@ function searchParts() {
     } else {
         alert('Please select a brand, model, and year.');
     }
-}function searchAllParts() {
+
+}
+function searchAllParts() {
     window.location.href = 'results.html';
 }

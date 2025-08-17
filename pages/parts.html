@@ -80,6 +80,21 @@
             color: #333;
             font-size: 1em;
         }
+        .back-btn {
+            margin-left: auto;
+            margin-right: auto;
+            width: 20%;
+            left: 38%;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: linear-gradient(135deg, #ff4d4d, #ff7878, #ffa500);
+            color:white;
+        }
     </style>
     <script>
         const partsData = {
@@ -131,11 +146,7 @@
                         { name: "Brake Pads", oem: "HN-BP-2023-002" },
                         { name: "Spark Plug", oem: "HN-SP-2023-003" }
                     ],
-                    2024: [
-                        { name: "Air Filter", oem: "HN-AF-2024-001" },
-                        { name: "Brake Disc", oem: "HN-BD-2024-002" },
-                        { name: "Oil Filter", oem: "HN-OF-2024-003" }
-                    ]
+                  
                 },
                 Model2: {
                     2022: [
@@ -216,17 +227,8 @@
     </script>
 </head>
 <body>
-    <div class="navbar">
-        <div class="brand">SpareHub</div>
-        <div class="links">
-            <ul>
-                <li><a href="Homepage.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#" class="sign">Sign In</a></li>
-            </ul>
-        </div>
-    </div>
     <section class="parts-container">
+        <div class="back-btn" onclick="window.history.back()">← Back to Search</div>
         <h2 id="searchInfo">Available Parts</h2>
         <div class="parts-list" id="partsList"></div>
     </section>

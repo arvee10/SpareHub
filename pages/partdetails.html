@@ -2,89 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part Details - SpareHub</title>
-    <link rel="stylesheet" href="../styles/part.css">
+    <title>SpareHub</title>
+    <link rel="stylesheet" href="../styles/partdetails.css">
 </head>
 <body>
-    <header>
-        <h1>SpareHub</h1>
-        <nav>
-            <a href="../pages/results.html">← Back to Search</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <div class="main-content">
-            <h2>Air Filter</h2>
-            <div class="part-image">
-                <img src="../images/airfilter.png" alt="Part Image">
-            </div>
-            <div class="part-details">
-                <p><strong>Price:</strong> ₹1500</p>
-                <p><strong>Brand:</strong> OEM Parts</p>
-                <p><strong>Condition:</strong> New</p>
-                <p><strong>Availability:</strong> In Stock</p>
-                <p><strong>Description:</strong> High-quality OEM part designed for optimal performance and durability. Compatible with multiple vehicle models.</p>
-            </div>
-
-            <div class="rating-section">
-                <h3>Customer Rating</h3>
-                <div class="star-rating">★★★★☆ (4.2/5 based on 56 reviews)</div>
-            </div>
-
-            <div class="review-section">
-                <h3>Customer Reviews</h3>
-                <div class="review">
-                    <p><strong>John D.</strong> ★★★★★</p>
-                    <p>Great part, works perfectly in my car. Fast shipping too!</p>
-                    <p><em>Posted on August 10, 2025</em></p>
-                </div>
-                <div class="review">
-                    <p><strong>Sarah M.</strong> ★★★★☆</p>
-                    <p>Good quality, but installation was a bit tricky.</p>
-                    <p><em>Posted on August 5, 2025</em></p>
-                </div>
-
-                <div class="review-form">
-                    <h3>Write a Review</h3>
-                    <form>
-                        <label for="rating">Rating:</label>
-                        <select id="rating" name="rating">
-                            <option value="5">★★★★★</option>
-                            <option value="4">★★★★☆</option>
-                            <option value="3">★★★☆☆</option>
-                            <option value="2">★★☆☆☆</option>
-                            <option value="1">★☆☆☆☆</option>
-                        </select>
-                        <br><br>
-                        <label for="review-text">Your Review:</label><br>
-                        <textarea id="review-text" name="review-text" placeholder="Write your review here..."></textarea>
-                        <br>
-                        <button type="submit">Submit Review</button>
-                    </form>
-                </div>
-            </div>
+    <div class="part-details-container">
+        <a href="../pages/results.html" class="back-link">← Back to Search</a>
+        <h1 id="part-name">Part Name</h1>
+        <div class="part-info">
+            <img id="part-image" src="" alt="Part Image">
+            <p>Price: <span id="part-price"></span></p>
+            <p>Brand: <span id="part-brand"></span></p>
+            <p>Condition: <span id="part-condition"></span></p>
+            <p>Availability: <span id="part-availability"></span></p>
+            <p>Description: <span id="part-description"></span></p>
         </div>
-
-        <div class="sidebar">
-            <h3>Related Parts</h3>
-            <p><a href="partdetails2.html">Clutchplate</a> - ₹2000</p>
-            <p><a href="partdetails.html">Brake Pads</a> - ₹800</p>
-            <p><a href="partdetails.html">Oil Filter</a> - ₹600</p>
+        <div class="rating-section">
+            <h2>Customer Rating</h2>
+            <p id="part-rating"></p>
         </div>
+        <div class="reviews-section">
+            <h2>Customer Reviews</h2>
+            <div id="part-reviews"></div>
+        </div>
+        <div class="review-form-section">
+            <h2>Write a Review</h2>
+            <form onsubmit="submit();">
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating">
+                    <option value="5">★★★★★</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="1">★☆☆☆☆</option>
+                </select>
+                <label for="review-text">Your Review:</label>
+                <textarea id="review-text" name="review-text" placeholder="Write your review here..."></textarea>
+                <button type="submit" >Submit Review</button>
+            </form>
+        </div>
+        <div class="related-parts-section">
+            <h2>Related Parts</h2>
+            <ul id="related-parts"></ul>
+        </div>
+        <footer>© 2025 AutoParts. All rights reserved.</footer>
     </div>
-
-    <footer>
-        <p>&copy; 2025 AutoParts. All rights reserved.</p>
-    </footer>
-
     <script>
-        // Basic form submission handling (to be enhanced with backend integration)
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Review submitted! (Note: This is a static demo. Backend integration required for actual submission.)');
-        });
+        //needs to change
+        // document.querySelector('form').addEventListener('submit', function(event) {
+        //     event.preventDefault(); // Prevent form submission
+        //     console.log("function call ayyi :D!")
+        //     const reviewText = document.getElementById("review-text").value.trim();
+        //     if (reviewText === "") {
+        //         alert("Nothing to submit, Review Empty");
+        //     } 
+        //     else {
+        //         alert('Review submitted! (Note: This is a static demo. Backend integration required for actual submission.)');
+        //     }
+        // });
     </script>
+    <script src="partdetails.js"></script>
 </body>
 </html>
