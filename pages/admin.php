@@ -73,6 +73,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </table>
             <button class="action-btn add-btn">Add New Part</button>
             <a href="logout.php" class="logout-btn">Logout</a>
+            <button class="action-btn" onclick="location.href='admin2.php'">View Analytics</button>
         </div>
     </div>
 </body>
