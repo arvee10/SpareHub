@@ -19,13 +19,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
     <div class="navbar">
         <div class="brand">SpareHub</div>
-        <div class="links">
-            <ul>
-                <li><a href="../pages/Homepage.html">Home</a></li>
-                <li><a href="../pages/about.html">About</a></li>
-                <li><a href="../pages/logout.php" class="sign">Sign Out</a></li>
-            </ul>
-        </div>
+
     </div>
     <div class="admin-main">
         <div class="admin-content">
@@ -44,7 +38,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <tbody>
                     <tr>
                         <td>Brake Pad Set</td>
-                        <td>₹45.99</td>
+                        <td>₹800</td>
                         <td>50</td>
                         <td>
                             <button class="action-btn edit-btn">Edit</button>
@@ -52,8 +46,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         </td>
                     </tr>
                     <tr>
-                        <td>Oil Filter</td>
-                        <td>₹12.50</td>
+                        <td>Clutchplate</td>
+                        <td>₹2000</td>
                         <td>100</td>
                         <td>
                             <button class="action-btn edit-btn">Edit</button>
@@ -62,7 +56,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </tr>
                     <tr>
                         <td>Air Filter</td>
-                        <td>₹18.75</td>
+                        <td>₹500</td>
                         <td>75</td>
                         <td>
                             <button class="action-btn edit-btn">Edit</button>
@@ -71,7 +65,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </tr>
                 </tbody>
             </table>
-            <button class="action-btn add-btn">Add New Part</button>
             <a href="logout.php" class="logout-btn">Logout</a>
             <button class="action-btn" onclick="location.href='admin2.php'">View Analytics</button>
         </div>

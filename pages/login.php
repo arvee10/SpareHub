@@ -6,7 +6,7 @@ $admin_username = "101";
 $admin_password = "password";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
+    $username = $_POST["userid"];
     $password = $_POST["password"];
 
     // Validate credentials

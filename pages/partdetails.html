@@ -48,18 +48,18 @@
         <footer>© 2025 AutoParts. All rights reserved.</footer>
     </div>
     <script>
-        //needs to change
-        // document.querySelector('form').addEventListener('submit', function(event) {
-        //     event.preventDefault(); // Prevent form submission
-        //     console.log("function call ayyi :D!")
-        //     const reviewText = document.getElementById("review-text").value.trim();
-        //     if (reviewText === "") {
-        //         alert("Nothing to submit, Review Empty");
-        //     } 
-        //     else {
-        //         alert('Review submitted! (Note: This is a static demo. Backend integration required for actual submission.)');
-        //     }
-        // });
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            console.log("function call ayyi :D!")
+            const reviewText = document.getElementById("review-text").value.trim();
+            if (reviewText === "") {
+                alert("Nothing to submit, Review Empty");
+                window.location.reload();
+            } 
+            else {
+                alert('Review submitted! (Note: This is a static demo. Backend integration required for actual submission.)');
+            }
+        });
     </script>
     <script src="partdetails.js"></script>
 </body>
