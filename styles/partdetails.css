@@ -84,6 +84,11 @@ h1#part-name {
     color: #38a169;
 }
 
+.related-part-image img
+{
+    border: #fcf4f4 solid 1px;
+    border-radius: 8px;
+}
 .rating-section, .reviews-section, .review-form-section, .related-parts-section {
     background: white;
     border-radius: 12px;
